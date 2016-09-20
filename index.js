@@ -85,3 +85,7 @@ const init = function(query) {
 };
 
 export default init;
+
+window.addEventListener('DOMContentLoaded', () => {
+  init();
+});
