@@ -1,4 +1,10 @@
 
+0.0.4 / 2016-09-20
+==================
+
+  * refactored so target is now start and that's the element where its triggered instead of the element you want the class to get added to
+  * updated readme
+
 0.0.3 / 2016-09-20
 ==================
 
