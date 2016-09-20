@@ -4,7 +4,7 @@ Domodule library to add classes as elements scroll into viewport.
 
 ## Install
 
-`npm install domodule-scroll-triggers`
+`npm install domodule domodule-scroll-triggers`
 
 ## Setup
 
