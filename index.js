@@ -30,6 +30,8 @@ class ScrollTrigger {
     this.eventHandler = debounce(this.onScroll.bind(this), 10, true);
     window.addEventListener('scroll', this.eventHandler);
     window.addEventListener('resize', this.calcBounds.bind(this));
+    //trigger right away
+    this.eventHandler();
   }
 
   calcBounds() {
