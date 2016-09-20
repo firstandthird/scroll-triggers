@@ -9,10 +9,7 @@ A tiny, dependency-less javascript library to add classes as elements scroll int
 ## Setup
 
 ```javascript
-import scrollTriggers from 'scroll-triggers';
-window.addEventListener('DOMContentLoaded', () => {
-  scrollTriggers();
-});
+import 'scroll-triggers';
 ```
 
 ## Usage
