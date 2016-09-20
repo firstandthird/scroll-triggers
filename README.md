@@ -14,20 +14,20 @@ import 'scroll-triggers';
 
 ## Usage
 
-Add Class when element is in view.
+Add class when element is in view.
 
 ```html
 <div data-scroll data-scroll-class="class-to-add"></div>
 ```
 
-Add class to another element when an element is in view
+Add class when another element is in view.
 
 ```html
-<div data-scroll data-scroll-class="class-to-add" data-scroll-target=".some .selector"></div>
+<div data-scroll data-scroll-class="class-to-add" data-scroll-start=".some .selector"></div>
 ```
 
-Add class to another element when an element is in view and remove when it gets to another element
+Add class when another element is in view and remove when it gets to another element
 
 ```html
-<div data-scroll data-scroll-class="class-to-add" data-scroll-target=".some .selector" data-scroll-end=".some .lower .selector"></div>
+<div data-scroll data-scroll-class="class-to-add" data-scroll-start=".some .selector" data-scroll-end=".some .lower .selector"></div>
 ```

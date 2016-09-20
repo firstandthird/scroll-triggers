@@ -35,32 +35,32 @@ class ScrollTrigger {
   }
 
   calcBounds() {
-    const rect = this.el.getBoundingClientRect();
-    this.offsetTop = rect.top;
-    this.height = rect.height;
     const dataset = this.el.dataset;
     this.class = dataset.scrollClass;
 
-    this.target = (dataset.scrollTarget) ? document.querySelector(dataset.scrollTarget) : this.el;
+    this.startEl = (dataset.scrollStart) ? document.querySelector(dataset.scrollStart) : this.el;
+    const rect = this.startEl.getBoundingClientRect();
+    this.start = rect.top + window.scrollY;
+
     if (dataset.scrollEnd) {
       const endEl = document.querySelector(dataset.scrollEnd);
       const endRect = endEl.getBoundingClientRect();
-      this.end = endRect.top;
+      this.end = endRect.top + window.scrollY;
     }
   }
 
   addClass() {
-    this.target.classList.add(this.class);
+    this.el.classList.add(this.class);
     this.added = true;
   }
   removeClass() {
-    this.target.classList.remove(this.class);
+    this.el.classList.remove(this.class);
     this.added = false;
   }
 
   onScroll() {
     const scroll = window.scrollY;
-    if (scroll < this.offsetTop || (this.end && scroll > this.end)) {
+    if (scroll < this.start || (this.end && scroll > this.end)) {
       if (this.added) {
         this.removeClass();
       }
