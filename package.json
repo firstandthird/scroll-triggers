@@ -1,0 +1,28 @@
+{
+  "name": "scroll-triggers",
+  "description": "A tiny, dependency-less javascript library to add classes as elements scroll into viewport.",
+  "homepage": "https://github.com/firstandthird/scroll-triggers",
+  "author": "First+Third",
+  "version": "0.0.1",
+  "main": "dist/scroll-triggers.js",
+  "scripts": {
+    "build": "babel index.js --out-file dist/scroll-triggers.js --source-maps",
+    "prepublish": "npm run build"
+  },
+  "keywords": [
+    "browser",
+    "scroll",
+    "declaritive"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/firstandthird/scroll-triggers.git"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.14.0",
+    "babel-preset-es2015": "^6.14.0"
+  },
+  "babel": {
+    "presets": ["es2015"]
+  }
+}
