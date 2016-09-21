@@ -25,7 +25,15 @@ class ScrollTrigger {
   constructor(el) {
     this.added = false;
     this.el = el;
-    this.options = this.el.dataset;
+    //since dataset doesn't work everywhere...
+
+    this.options = {
+      position: el.getAttribute('data-scroll-position'),
+      start: el.getAttribute('data-scroll-start'),
+      end: el.getAttribute('data-scroll-end'),
+      className: el.getAttribute('data-scroll-class'),
+      image: el.getAttribute('data-scroll-image')
+    };
 
     this.calcBounds();
     this.eventHandler = debounce(this.onScroll.bind(this), 10, true);
@@ -40,9 +48,9 @@ class ScrollTrigger {
   }
 
   calcBounds() {
-    const position = this.options.scrollPosition || 'bottom';
+    const position = this.options.position || 'bottom';
 
-    this.startEl = (this.options.scrollStart) ? document.querySelector(this.options.scrollStart) : this.el;
+    this.startEl = (this.options.start) ? document.querySelector(this.options.start) : this.el;
     const rect = this.startEl.getBoundingClientRect();
     const scrollY = this.getScrollY();
     this.start = rect.top + scrollY;
@@ -53,19 +61,19 @@ class ScrollTrigger {
       this.start -= window.innerHeight;
     }
 
-    if (this.options.scrollEnd) {
-      const endEl = document.querySelector(this.options.scrollEnd);
+    if (this.options.end) {
+      const endEl = document.querySelector(this.options.end);
       const endRect = endEl.getBoundingClientRect();
       this.end = endRect.top + scrollY;
     }
   }
 
   inView() {
-    const className = this.options.scrollClass;
+    const className = this.options.className;
     if (className) {
       this.el.classList.add(className);
     }
-    const image = this.options.scrollImage;
+    const image = this.options.image;
     if (image && !this.el.getAttribute('src')) {
       this.el.setAttribute('src', image);
     }
@@ -73,7 +81,7 @@ class ScrollTrigger {
   }
 
   outOfView() {
-    const className = this.options.scrollClass;
+    const className = this.options.className;
     if (className) {
       this.el.classList.remove(className);
     }
