@@ -1,4 +1,12 @@
 
+0.1.0 / 2016-09-21
+==================
+
+  * added image support
+  * add support for position=top|middle|bottom
+  * added linting
+  * npm run dev to watch for file changes
+
 0.0.4 / 2016-09-20
 ==================
 
