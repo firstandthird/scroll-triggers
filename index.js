@@ -38,9 +38,17 @@ class ScrollTrigger {
     const dataset = this.el.dataset;
     this.class = dataset.scrollClass;
 
+    const position = dataset.scrollPosition || 'bottom';
+
     this.startEl = (dataset.scrollStart) ? document.querySelector(dataset.scrollStart) : this.el;
     const rect = this.startEl.getBoundingClientRect();
     this.start = rect.top + window.scrollY;
+
+    if (position === 'middle') {
+      this.start -= window.innerHeight / 2;
+    } else if (position === 'bottom') {
+      this.start -= window.innerHeight;
+    }
 
     if (dataset.scrollEnd) {
       const endEl = document.querySelector(dataset.scrollEnd);

@@ -31,3 +31,15 @@ Add class when another element is in view and remove when it gets to another ele
 ```html
 <div data-scroll data-scroll-class="class-to-add" data-scroll-start=".some .selector" data-scroll-end=".some .lower .selector"></div>
 ```
+
+Add class at when element hits bottom of page
+
+```html
+<div data-scroll data-scroll-class="class-to-add" data-scroll-position="bottom"></div>
+```
+
+Add class at when element hits middle of page
+
+```html
+<div data-scroll data-scroll-class="class-to-add" data-scroll-position="middle"></div>
+```
