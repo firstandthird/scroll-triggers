@@ -25,6 +25,7 @@ class ScrollTrigger {
   constructor(el) {
     this.added = false;
     this.el = el;
+    this.options = this.el.dataset;
 
     this.calcBounds();
     this.eventHandler = debounce(this.onScroll.bind(this), 10, true);
@@ -35,12 +36,9 @@ class ScrollTrigger {
   }
 
   calcBounds() {
-    const dataset = this.el.dataset;
-    this.class = dataset.scrollClass;
+    const position = this.options.scrollPosition || 'bottom';
 
-    const position = dataset.scrollPosition || 'bottom';
-
-    this.startEl = (dataset.scrollStart) ? document.querySelector(dataset.scrollStart) : this.el;
+    this.startEl = (this.options.scrollStart) ? document.querySelector(this.options.scrollStart) : this.el;
     const rect = this.startEl.getBoundingClientRect();
     this.start = rect.top + window.scrollY;
 
@@ -50,19 +48,30 @@ class ScrollTrigger {
       this.start -= window.innerHeight;
     }
 
-    if (dataset.scrollEnd) {
-      const endEl = document.querySelector(dataset.scrollEnd);
+    if (this.options.scrollEnd) {
+      const endEl = document.querySelector(this.options.scrollEnd);
       const endRect = endEl.getBoundingClientRect();
       this.end = endRect.top + window.scrollY;
     }
   }
 
-  addClass() {
-    this.el.classList.add(this.class);
+  inView() {
+    const className = this.options.scrollClass;
+    if (className) {
+      this.el.classList.add(className);
+    }
+    const image = this.options.scrollImage;
+    if (image && !this.el.getAttribute('src')) {
+      this.el.setAttribute('src', image);
+    }
     this.added = true;
   }
-  removeClass() {
-    this.el.classList.remove(this.class);
+
+  outOfView() {
+    const className = this.options.scrollClass;
+    if (className) {
+      this.el.classList.remove(className);
+    }
     this.added = false;
   }
 
@@ -70,7 +79,7 @@ class ScrollTrigger {
     const scroll = window.scrollY;
     if (scroll < this.start || (this.end && scroll > this.end)) {
       if (this.added) {
-        this.removeClass();
+        this.outOfView();
       }
       return;
     }
@@ -78,7 +87,7 @@ class ScrollTrigger {
     if (this.added) {
       return;
     }
-    this.addClass();
+    this.inView();
   }
 }
 
