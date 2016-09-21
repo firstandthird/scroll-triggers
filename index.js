@@ -35,12 +35,17 @@ class ScrollTrigger {
     this.eventHandler();
   }
 
+  getScrollY() {
+    return window.pageYOffset || document.documentElement.scrollTop;
+  }
+
   calcBounds() {
     const position = this.options.scrollPosition || 'bottom';
 
     this.startEl = (this.options.scrollStart) ? document.querySelector(this.options.scrollStart) : this.el;
     const rect = this.startEl.getBoundingClientRect();
-    this.start = rect.top + window.scrollY;
+    const scrollY = this.getScrollY();
+    this.start = rect.top + scrollY;
 
     if (position === 'middle') {
       this.start -= window.innerHeight / 2;
@@ -51,7 +56,7 @@ class ScrollTrigger {
     if (this.options.scrollEnd) {
       const endEl = document.querySelector(this.options.scrollEnd);
       const endRect = endEl.getBoundingClientRect();
-      this.end = endRect.top + window.scrollY;
+      this.end = endRect.top + scrollY;
     }
   }
 
@@ -76,7 +81,7 @@ class ScrollTrigger {
   }
 
   onScroll() {
-    const scroll = window.scrollY;
+    const scroll = this.getScrollY();
     if (scroll < this.start || (this.end && scroll > this.end)) {
       if (this.added) {
         this.outOfView();
