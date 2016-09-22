@@ -4,7 +4,7 @@
   "homepage": "https://github.com/firstandthird/scroll-triggers",
   "author": "First+Third",
   "license": "MIT",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "main": "dist/scroll-triggers.js",
   "scripts": {
     "build": "babel index.js --out-file dist/scroll-triggers.js --source-maps",

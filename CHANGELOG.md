@@ -1,4 +1,9 @@
 
+1.2.0 / 2016-09-22
+==================
+
+  * support passing in percentage value for position
+
 1.1.0 / 2016-09-22
 ==================
 
