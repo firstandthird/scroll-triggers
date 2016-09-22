@@ -2,6 +2,12 @@
 
 A tiny, dependency-less javascript library to add classes as elements scroll into viewport.
 
+## Features
+
+* Add a class when an element comes into view (great for animations)
+* Set an image when an element comes into view (great for lazy loading)
+* API for both HTML and Javascript
+
 ## Install
 
 `npm install scroll-triggers`
@@ -13,6 +19,8 @@ import 'scroll-triggers';
 ```
 
 ## Usage
+
+### HTML
 
 Add class when element is in view.
 
@@ -42,4 +50,25 @@ Add class at when element hits middle of page
 
 ```html
 <div data-scroll data-scroll-class="class-to-add" data-scroll-position="middle"></div>
+```
+
+Set an image when an element comes into view
+
+```html
+<div data-scroll data-scroll-image="/path/to/image.jpg"></div>
+```
+
+### Javascript
+
+```javascript
+import scrollTriggers from 'scroll-triggers';
+scrollTriggers({
+  '.some-selector': {
+    start: '.selector',
+    end: '.selector',
+    className: 'class-to-add',
+    image: 'image/path.jpg',
+    position: 'top|middle|bottom'
+  }
+});
 ```
