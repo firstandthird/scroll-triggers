@@ -1,4 +1,9 @@
 
+1.1.0 / 2016-09-22
+==================
+
+  * support for matching multiple selectors when passing in object
+
 1.0.0 / 2016-09-22
 ==================
 
