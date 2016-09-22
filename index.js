@@ -22,18 +22,10 @@ const debounce = function(func, wait, immediate) {
 };
 
 class ScrollTrigger {
-  constructor(el) {
+  constructor(el, options) {
     this.added = false;
     this.el = el;
-    //since dataset doesn't work everywhere...
-
-    this.options = {
-      position: el.getAttribute('data-scroll-position'),
-      start: el.getAttribute('data-scroll-start'),
-      end: el.getAttribute('data-scroll-end'),
-      className: el.getAttribute('data-scroll-class'),
-      image: el.getAttribute('data-scroll-image')
-    };
+    this.options = options;
 
     this.calcBounds();
     this.eventHandler = debounce(this.onScroll.bind(this), 10, true);
@@ -104,13 +96,25 @@ class ScrollTrigger {
   }
 }
 
-const init = function(query) {
-  if (!query) {
-    query = document.querySelectorAll('[data-scroll]');
-  }
+const init = function(els) {
+  const query = document.querySelectorAll('[data-scroll]');
   for (let i = 0, c = query.length; i < c; i++) {
     const el = query[i];
-    new ScrollTrigger(el);
+    const options = {
+      position: el.getAttribute('data-scroll-position'),
+      start: el.getAttribute('data-scroll-start'),
+      end: el.getAttribute('data-scroll-end'),
+      className: el.getAttribute('data-scroll-class'),
+      image: el.getAttribute('data-scroll-image')
+    };
+    new ScrollTrigger(el, options);
+  }
+  if (els) {
+    Object.keys(els).forEach((selector) => {
+      const el = document.querySelector(selector);
+      const options = els[selector];
+      new ScrollTrigger(el, options);
+    });
   }
 };
 
