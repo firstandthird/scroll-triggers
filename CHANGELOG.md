@@ -1,4 +1,12 @@
 
+1.0.0 / 2016-09-22
+==================
+
+  * don't error if classList doesn't exist
+  * fixed bug with end element not respecting position option
+  * updated readme
+  * be able to pass in object to set triggers
+
 0.1.1 / 2016-09-21
 ==================
 
