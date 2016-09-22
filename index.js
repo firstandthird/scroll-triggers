@@ -68,7 +68,7 @@ class ScrollTrigger {
 
   inView() {
     const className = this.options.className;
-    if (className) {
+    if (className && this.el.classList) {
       this.el.classList.add(className);
     }
     const image = this.options.image;
@@ -80,7 +80,7 @@ class ScrollTrigger {
 
   outOfView() {
     const className = this.options.className;
-    if (className) {
+    if (className && this.el.classList) {
       this.el.classList.remove(className);
     }
     this.added = false;
