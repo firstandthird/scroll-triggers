@@ -39,6 +39,20 @@ class ScrollTrigger {
     return window.pageYOffset || document.documentElement.scrollTop;
   }
 
+  processPosition(position, currentValue) {
+    if (position === 'top') {
+      return currentValue;
+    }
+    if (position === 'middle') {
+      currentValue -= window.innerHeight / 2;
+    } else if (position === 'bottom') {
+      currentValue -= window.innerHeight;
+    } else {
+      currentValue -= window.innerHeight * (parseInt(position, 10) / 100);
+    }
+    return currentValue;
+  }
+
   calcBounds() {
     const position = this.options.position || 'bottom';
 
@@ -46,23 +60,13 @@ class ScrollTrigger {
     const rect = this.startEl.getBoundingClientRect();
     const scrollY = this.getScrollY();
     this.start = rect.top + scrollY;
-
-    if (position === 'middle') {
-      this.start -= window.innerHeight / 2;
-    } else if (position === 'bottom') {
-      this.start -= window.innerHeight;
-    }
+    this.start = this.processPosition(position, this.start);
 
     if (this.options.end) {
       const endEl = document.querySelector(this.options.end);
       const endRect = endEl.getBoundingClientRect();
       this.end = endRect.top + scrollY;
-
-      if (position === 'middle') {
-        this.end -= window.innerHeight / 2;
-      } else if (position === 'bottom') {
-        this.end -= window.innerHeight;
-      }
+      this.end = this.processPosition(position, this.end);
     }
   }
 
