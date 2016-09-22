@@ -102,7 +102,7 @@ class ScrollTrigger {
   }
 }
 
-const init = function(els) {
+const init = function(obj) {
   const query = document.querySelectorAll('[data-scroll]');
   for (let i = 0, c = query.length; i < c; i++) {
     const el = query[i];
@@ -115,11 +115,14 @@ const init = function(els) {
     };
     new ScrollTrigger(el, options);
   }
-  if (els) {
-    Object.keys(els).forEach((selector) => {
-      const el = document.querySelector(selector);
-      const options = els[selector];
-      new ScrollTrigger(el, options);
+  if (obj) {
+    Object.keys(obj).forEach((selector) => {
+      const els = document.querySelectorAll(selector);
+      const options = obj[selector];
+      for (let i = 0, c = els.length; i < c; i++) {
+        const el = els[i];
+        new ScrollTrigger(el, options);
+      }
     });
   }
 };
