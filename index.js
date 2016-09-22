@@ -57,6 +57,12 @@ class ScrollTrigger {
       const endEl = document.querySelector(this.options.end);
       const endRect = endEl.getBoundingClientRect();
       this.end = endRect.top + scrollY;
+
+      if (position === 'middle') {
+        this.end -= window.innerHeight / 2;
+      } else if (position === 'bottom') {
+        this.end -= window.innerHeight;
+      }
     }
   }
 
