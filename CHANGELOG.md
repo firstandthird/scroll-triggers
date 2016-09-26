@@ -1,4 +1,9 @@
 
+1.3.0 / 2016-09-26
+==================
+
+  * added support for data-scroll-progress trigger
+
 1.2.0 / 2016-09-22
 ==================
 
