@@ -6,6 +6,7 @@ A tiny, dependency-less javascript library to add classes as elements scroll int
 
 * Add a class when an element comes into view (great for animations)
 * Set an image when an element comes into view (great for lazy loading)
+* Set the width of an element based on scroll % (great for scroll progress bars)
 * API for both HTML and Javascript
 
 ## Install
@@ -58,6 +59,12 @@ Set an image when an element comes into view
 <div data-scroll data-scroll-image="/path/to/image.jpg"></div>
 ```
 
+Set the width of an element based on scroll % (great for progress bars)
+
+```html
+<div data-scroll data-scroll-progress></div>
+```
+
 ### Javascript
 
 ```javascript
@@ -68,7 +75,8 @@ scrollTriggers({
     end: '.selector',
     className: 'class-to-add',
     image: 'image/path.jpg',
-    position: 'top|middle|bottom'
+    position: 'top|middle|bottom',
+    progress: true|false
   }
 });
 ```

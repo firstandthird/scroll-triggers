@@ -92,6 +92,10 @@ class ScrollTrigger {
 
   onScroll() {
     const scroll = this.getScrollY();
+    if (this.options.progress) {
+      const perc = scroll / (document.documentElement.scrollHeight - window.innerHeight);
+      this.el.style.width = `${perc * 100}%`;
+    }
     if (scroll < this.start || (this.end && scroll > this.end)) {
       if (this.added) {
         this.outOfView();
@@ -115,7 +119,8 @@ const init = function(obj) {
       start: el.getAttribute('data-scroll-start'),
       end: el.getAttribute('data-scroll-end'),
       className: el.getAttribute('data-scroll-class'),
-      image: el.getAttribute('data-scroll-image')
+      image: el.getAttribute('data-scroll-image'),
+      progress: (el.getAttribute('data-scroll-progress') !== null)
     };
     new ScrollTrigger(el, options);
   }
