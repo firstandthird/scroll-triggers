@@ -76,8 +76,19 @@ class ScrollTrigger {
       this.el.classList.add(className);
     }
     const image = this.options.image;
-    if (image && !this.el.getAttribute('src')) {
-      this.el.setAttribute('src', image);
+    if (image) {
+      if (this.el.tagName === 'IMG') {
+        if (this.el.getAttribute('src')) {
+          return;
+        }
+        this.el.setAttribute('src', image);
+      } else {
+        if (this.el.style.backgroundImage) {
+          return;
+        }
+        this.el.style.backgroundImage = `url(${image})`;
+        this.el.style.backgroundRepeat = 'no-repeat';
+      }
     }
     this.added = true;
   }
