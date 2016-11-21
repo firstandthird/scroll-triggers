@@ -1,4 +1,10 @@
 
+1.4.0 / 2016-11-21
+==================
+
+  * fixed build script to create dist folder
+  * added support for background images on non-img tags
+
 1.3.0 / 2016-09-26
 ==================
 
