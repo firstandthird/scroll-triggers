@@ -1,4 +1,3 @@
-/* global window,document */
 'use strict';
 
 const debounce = function(func, wait, immediate) {
@@ -121,7 +120,7 @@ class ScrollTrigger {
   }
 }
 
-const init = function(obj) {
+const init = function(items) {
   const query = document.querySelectorAll('[data-scroll]');
   for (let i = 0, c = query.length; i < c; i++) {
     const el = query[i];
@@ -135,15 +134,29 @@ const init = function(obj) {
     };
     new ScrollTrigger(el, options);
   }
-  if (obj) {
-    Object.keys(obj).forEach((selector) => {
-      const els = document.querySelectorAll(selector);
-      const options = obj[selector];
-      for (let i = 0, c = els.length; i < c; i++) {
-        const el = els[i];
-        new ScrollTrigger(el, options);
+  if (items && Array.isArray(items)) {
+    items.forEach((item) => {
+      let els;
+      //support array of elements
+      if (item.el instanceof NodeList) {
+        els = [].slice.call(item.el);
+      } else if (typeof item.el === 'string') {
+        els = document.querySelectorAll(item.el);
+      } else if (item.el instanceof Node) {
+        els = [item.el];
+      } else if (Array.isArray(item.el)) {
+        els = item.el;
+      } else {
+        throw new Error('unknown element');
       }
+
+      els.forEach((el) => {
+        delete item.el;
+        new ScrollTrigger(el, item);
+      });
     });
+  } else if (items) {
+    throw new Error('please convert object to array');
   }
 };
 

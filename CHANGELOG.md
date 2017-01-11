@@ -1,4 +1,10 @@
 
+2.0.0 / 2017-01-05
+==================
+
+  * added eslint-plugin-compat
+  * BREAKING: pass in array instead of object - lets you pass in element or NodeList
+
 1.4.0 / 2016-11-21
 ==================
 

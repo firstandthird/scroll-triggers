@@ -4,7 +4,7 @@
   "homepage": "https://github.com/firstandthird/scroll-triggers",
   "author": "First+Third",
   "license": "MIT",
-  "version": "1.4.0",
+  "version": "2.0.0",
   "main": "dist/scroll-triggers.js",
   "scripts": {
     "build": "mkdir -p dist && babel index.js --out-file dist/scroll-triggers.js --source-maps",
@@ -13,7 +13,10 @@
     "prepublish": "npm run build"
   },
   "watch": {
-    "index.js": ["lint", "build"]
+    "index.js": [
+      "lint",
+      "build"
+    ]
   },
   "keywords": [
     "browser",
@@ -25,17 +28,27 @@
     "url": "https://github.com/firstandthird/scroll-triggers.git"
   },
   "devDependencies": {
-    "babel-cli": "^6.14.0",
-    "babel-preset-es2015": "^6.14.0",
+    "babel-cli": "^6.18.0",
+    "babel-preset-es2015": "^6.18.0",
     "concurrently": "^3.1.0",
-    "eslint": "^3.5.0",
-    "eslint-config-firstandthird": "^3.0.2",
-    "eslint-plugin-import": "^2.2.0",
-    "nswatch": "^0.2.0",
-    "static-server": "^2.0.3"
+    "eslint": "^3.12.2",
+    "eslint-config-firstandthird": "^3.1.0",
+    "eslint-plugin-compat": "0.1.3",
+    "eslint-plugin-import": "2.2.0",
+    "nswatch": "0.2.0",
+    "static-server": "2.0.3"
   },
   "eslintConfig": {
-    "extends": "firstandthird"
+    "extends": "firstandthird",
+    "env": {
+      "browser": true
+    },
+    "plugins": [
+      "compat"
+    ],
+    "rules": {
+      "compat/compat": 2
+    }
   },
   "babel": {
     "presets": [
