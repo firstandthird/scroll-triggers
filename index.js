@@ -2,26 +2,7 @@
 
 import { find, findOne, ready, addClass, removeClass, styles, addAttrs } from 'domassist';
 import attrobj from 'attrobj';
-
-const debounce = function(func, wait, immediate) {
-  let timeout;
-  return function() {
-    const context = this;
-    const args = arguments; // eslint-disable-line prefer-rest-params
-    const later = function() {
-      timeout = null;
-      if (!immediate) {
-        func.apply(context, args);
-      }
-    };
-    const callNow = immediate && !timeout;
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-    if (callNow) {
-      func.apply(context, args);
-    }
-  };
-};
+import tinybounce from 'tinybounce';
 
 class ScrollTrigger {
   constructor(el, options) {
@@ -30,7 +11,7 @@ class ScrollTrigger {
     this.options = options;
 
     this.calcBounds();
-    this.eventHandler = debounce(this.onScroll.bind(this), 10, true);
+    this.eventHandler = tinybounce(this.onScroll.bind(this), 10, true);
     window.addEventListener('scroll', this.eventHandler);
     window.addEventListener('resize', this.calcBounds.bind(this));
     //trigger right away
