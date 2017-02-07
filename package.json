@@ -6,11 +6,24 @@
   "license": "MIT",
   "version": "2.0.0",
   "main": "dist/scroll-triggers.js",
+  "module": "index.js",
   "scripts": {
-    "build": "mkdir -p dist && babel index.js --out-file dist/scroll-triggers.js --source-maps",
-    "dev": "concurrently -r 'nswatch' 'static-server -p 8000'",
-    "lint": "eslint index.js",
-    "prepublish": "npm run build"
+    "start": "scriptkit",
+    "build": "scriptkit build",
+    "dev": "scriptkit dev",
+    "prepublish": "scriptkit"
+  },
+  "scriptkit": {
+    "files": {
+      "dist/scroll-triggers.js": "index.js"
+    },
+    "scripts": {
+      "commonjs": {
+        "ignore": [
+          "node_modules/tape-rollup/*"
+        ]
+      }
+    }
   },
   "watch": {
     "index.js": [
@@ -28,31 +41,18 @@
     "url": "https://github.com/firstandthird/scroll-triggers.git"
   },
   "devDependencies": {
-    "babel-cli": "^6.18.0",
-    "babel-preset-es2015": "^6.18.0",
-    "concurrently": "^3.1.0",
-    "eslint": "^3.12.2",
-    "eslint-config-firstandthird": "^3.1.0",
-    "eslint-plugin-compat": "0.1.3",
+    "eslint-config-firstandthird": "3.2.0",
     "eslint-plugin-import": "2.2.0",
-    "nswatch": "0.2.0",
-    "static-server": "2.0.3"
+    "phantomjs": "2.1.7",
+    "scriptkit": "0.0.22",
+    "tap-spec": "4.1.1",
+    "tape-rollup": "4.6.4",
+    "tape-run": "2.1.5"
   },
   "eslintConfig": {
-    "extends": "firstandthird",
     "env": {
       "browser": true
     },
-    "plugins": [
-      "compat"
-    ],
-    "rules": {
-      "compat/compat": 2
-    }
-  },
-  "babel": {
-    "presets": [
-      "es2015"
-    ]
+    "extends": "firstandthird"
   }
 }
