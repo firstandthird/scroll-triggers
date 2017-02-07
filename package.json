@@ -54,5 +54,10 @@
       "browser": true
     },
     "extends": "firstandthird"
+  },
+  "dependencies": {
+    "attrobj": "^1.2.0",
+    "domassist": "^1.5.0",
+    "tinybounce": "0.0.1"
   }
 }
