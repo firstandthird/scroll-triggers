@@ -130,19 +130,8 @@ class ScrollTrigger {
 }
 
 const init = function(items) {
-  const query = document.querySelectorAll('[data-scroll]');
-  for (let i = 0, c = query.length; i < c; i++) {
-    const el = query[i];
-    const options = {
-      position: el.getAttribute('data-scroll-position'),
-      start: el.getAttribute('data-scroll-start'),
-      end: el.getAttribute('data-scroll-end'),
-      className: el.getAttribute('data-scroll-class'),
-      image: el.getAttribute('data-scroll-image'),
-      progress: (el.getAttribute('data-scroll-progress') !== null)
-    };
-    new ScrollTrigger(el, options);
-  }
+  const instances = [];
+
   if (items && Array.isArray(items)) {
     items.forEach((item) => {
       let els;
@@ -161,12 +150,28 @@ const init = function(items) {
 
       els.forEach((el) => {
         delete item.el;
-        new ScrollTrigger(el, item);
+        instances.push(new ScrollTrigger(el, item));
       });
     });
   } else if (items) {
     throw new Error('please convert object to array');
+  } else {
+    const query = document.querySelectorAll('[data-scroll]');
+    for (let i = 0, c = query.length; i < c; i++) {
+      const el = query[i];
+      const options = {
+        position: el.getAttribute('data-scroll-position'),
+        start: el.getAttribute('data-scroll-start'),
+        end: el.getAttribute('data-scroll-end'),
+        className: el.getAttribute('data-scroll-class'),
+        image: el.getAttribute('data-scroll-image'),
+        progress: (el.getAttribute('data-scroll-progress') !== null)
+      };
+      instances.push(new ScrollTrigger(el, options));
+    }
   }
+
+  return instances;
 };
 
 export default init;
