@@ -56,6 +56,7 @@ class ScrollTrigger {
     const position = this.options.position || 'bottom';
 
     this.startEl = (this.options.start) ? document.querySelector(this.options.start) : this.el;
+    ScrollTrigger.checkElement(this.startEl, 'start', this.options.start);
     const rect = this.startEl.getBoundingClientRect();
     const scrollY = this.getScrollY();
     this.start = rect.top + scrollY;
@@ -66,6 +67,8 @@ class ScrollTrigger {
       const endRect = endEl.getBoundingClientRect();
       this.end = endRect.top + scrollY;
       this.end = this.processPosition(position, this.end);
+
+      ScrollTrigger.checkElement(endEl, 'end', this.options.end);
     }
   }
 
@@ -117,6 +120,12 @@ class ScrollTrigger {
       return;
     }
     this.inView();
+  }
+
+  static checkElement(element, position, selector) {
+    if (!element) {
+      throw new Error(`${position} element doesn't match any element with selector: "${selector}"`);
+    }
   }
 }
 
