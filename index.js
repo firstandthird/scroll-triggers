@@ -1,6 +1,6 @@
 'use strict';
 
-import { find, findOne, ready, addClass, removeClass, styles, addAttrs } from 'domassist';
+import { find, findOne, ready, on, addClass, removeClass, styles, addAttrs } from 'domassist';
 import attrobj from 'attrobj';
 import tinybounce from 'tinybounce';
 
@@ -12,8 +12,9 @@ class ScrollTrigger {
 
     this.calcBounds();
     this.eventHandler = tinybounce(this.onScroll.bind(this), 10, true);
-    window.addEventListener('scroll', this.eventHandler);
-    window.addEventListener('resize', this.calcBounds.bind(this));
+    this.dCalcBounds = tinybounce(this.calcBounds.bind(this), 10);
+    on(window, 'scroll', this.eventHandler);
+    on(window, 'resize', this.dCalcBounds);
     //trigger right away
     this.eventHandler();
   }
