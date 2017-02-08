@@ -1,4 +1,15 @@
 
+3.0.0 / 2017-02-08
+==================
+
+  * throws if start/end elements doesn't exist
+  * uses scriptkit
+  * returns instances on initialization
+  * fixed image on example
+  * leverage libraries instead of custom functions: tinybounce, domassisst and attrobj
+  * ensure resize is also debounced
+  * BREAKING: init with options won't try to parse the page too anymore as this was creating more instances.
+
 2.0.0 / 2017-01-05
 ==================
 
