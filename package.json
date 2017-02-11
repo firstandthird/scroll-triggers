@@ -43,7 +43,7 @@
   "devDependencies": {
     "eslint-config-firstandthird": "3.2.0",
     "eslint-plugin-import": "2.2.0",
-    "phantomjs": "2.1.7",
+    "phantomjs-prebuilt": "^2.1.14",
     "scriptkit": "0.0.22",
     "tap-spec": "4.1.1",
     "tape-rollup": "4.6.4",
