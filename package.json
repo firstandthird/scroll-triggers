@@ -57,7 +57,7 @@
   },
   "dependencies": {
     "attrobj": "^1.2.0",
-    "domassist": "1.6.0",
+    "domassist": "1.6.1",
     "tinybounce": "0.0.1"
   }
 }
