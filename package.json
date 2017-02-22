@@ -41,7 +41,7 @@
     "url": "https://github.com/firstandthird/scroll-triggers.git"
   },
   "devDependencies": {
-    "eslint-config-firstandthird": "3.2.0",
+    "eslint-config-firstandthird": "3.3.0",
     "eslint-plugin-import": "2.2.0",
     "phantomjs-prebuilt": "^2.1.14",
     "scriptkit": "0.0.22",
