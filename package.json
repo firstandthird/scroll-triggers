@@ -44,10 +44,10 @@
     "eslint-config-firstandthird": "3.2.0",
     "eslint-plugin-import": "2.2.0",
     "phantomjs-prebuilt": "^2.1.14",
-    "scriptkit": "0.0.22",
+    "scriptkit": "0.2.0",
     "tap-spec": "4.1.1",
     "tape-rollup": "4.6.4",
-    "tape-run": "2.1.6"
+    "tape-run": "2.4.1"
   },
   "eslintConfig": {
     "env": {
@@ -56,8 +56,8 @@
     "extends": "firstandthird"
   },
   "dependencies": {
-    "attrobj": "^1.2.0",
-    "domassist": "1.6.0",
+    "attrobj": "1.2.0",
+    "domassist": "1.7.1",
     "tinybounce": "0.0.1"
   }
 }
