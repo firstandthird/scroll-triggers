@@ -26,14 +26,16 @@ class ScrollTrigger {
     ScrollTrigger.checkElement(this.startEl, 'start', this.options.start);
     const rect = this.startEl.getBoundingClientRect();
     const scrollY = ScrollTrigger.getScrollY();
-    this.start = rect.top + scrollY;
-    this.start = ScrollTrigger.processPosition(position, this.start);
+    const start = rect.top + scrollY + (this.options.offset || 0);
+
+    this.start = ScrollTrigger.processPosition(position, start);
 
     if (this.options.end) {
       const endEl = findOne(this.options.end);
       const endRect = endEl.getBoundingClientRect();
-      this.end = endRect.top + scrollY;
-      this.end = ScrollTrigger.processPosition(position, this.end);
+      const end = endRect.top + scrollY;
+
+      this.end = ScrollTrigger.processPosition(position, end);
 
       ScrollTrigger.checkElement(endEl, 'end', this.options.end);
     }
@@ -142,10 +144,15 @@ const init = function(items) {
 
     els.forEach(el => {
       const options = attrobj('scroll', el);
+
       if (options.progress !== null && typeof options.progress !== 'undefined') {
         options.progress = true;
       }
       options.className = options.class;
+
+      if (options.offset) {
+        options.offset = parseInt(options.offset, 10);
+      }
 
       instances.push(new ScrollTrigger(el, options));
     });
