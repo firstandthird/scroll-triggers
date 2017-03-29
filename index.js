@@ -15,8 +15,6 @@ class ScrollTrigger {
     this.dCalcBounds = tinybounce(this.calcBounds.bind(this), 10);
     on(window, 'scroll', this.eventHandler);
     on(window, 'resize', this.dCalcBounds);
-    //trigger right away
-    this.eventHandler();
   }
 
   calcBounds() {
@@ -39,6 +37,8 @@ class ScrollTrigger {
 
       ScrollTrigger.checkElement(endEl, 'end', this.options.end);
     }
+
+    this.eventHandler();
   }
 
   inView() {
