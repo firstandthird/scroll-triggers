@@ -9,10 +9,11 @@ class ScrollTrigger {
     this.added = false;
     this.el = el;
     this.options = options;
-
-    this.calcBounds();
     this.eventHandler = tinybounce(this.onScroll.bind(this), 10, true);
     this.dCalcBounds = tinybounce(this.calcBounds.bind(this), 10);
+
+    this.calcBounds();
+
     on(window, 'scroll', this.eventHandler);
     on(window, 'resize', this.dCalcBounds);
   }
