@@ -9,14 +9,13 @@ class ScrollTrigger {
     this.added = false;
     this.el = el;
     this.options = options;
-
-    this.calcBounds();
     this.eventHandler = tinybounce(this.onScroll.bind(this), 10, true);
     this.dCalcBounds = tinybounce(this.calcBounds.bind(this), 10);
+
+    this.calcBounds();
+
     on(window, 'scroll', this.eventHandler);
     on(window, 'resize', this.dCalcBounds);
-    //trigger right away
-    this.eventHandler();
   }
 
   calcBounds() {
@@ -39,6 +38,8 @@ class ScrollTrigger {
 
       ScrollTrigger.checkElement(endEl, 'end', this.options.end);
     }
+
+    this.eventHandler();
   }
 
   inView() {
@@ -152,6 +153,11 @@ const init = function(items) {
 
       if (options.offset) {
         options.offset = parseInt(options.offset, 10);
+      } else if (options.image) {
+        // Loading an image from a full screen below
+        options.offset = Math.max(
+          document.documentElement.clientHeight,
+          window.innerHeight || 0) * -1;
       }
 
       instances.push(new ScrollTrigger(el, options));

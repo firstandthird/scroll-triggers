@@ -4,7 +4,7 @@
   "homepage": "https://github.com/firstandthird/scroll-triggers",
   "author": "First+Third",
   "license": "MIT",
-  "version": "3.1.0",
+  "version": "3.3.0",
   "main": "dist/scroll-triggers.js",
   "module": "index.js",
   "scripts": {
@@ -57,7 +57,7 @@
   },
   "dependencies": {
     "attrobj": "1.2.0",
-    "domassist": "1.7.1",
+    "domassist": "1.8.0",
     "tinybounce": "0.0.1"
   }
 }
