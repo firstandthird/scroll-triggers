@@ -33,8 +33,9 @@ class ScrollTrigger {
       const endEl = findOne(this.options.end);
       const endRect = endEl.getBoundingClientRect();
       const end = endRect.top + scrollY;
+      const endPosition = this.options.positionEnd || 'bottom';
 
-      this.end = ScrollTrigger.processPosition('bottom', end);
+      this.end = ScrollTrigger.processPosition(endPosition, end);
 
       ScrollTrigger.checkElement(endEl, 'end', this.options.end);
     }
