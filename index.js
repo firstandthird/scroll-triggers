@@ -11,11 +11,20 @@ class ScrollTrigger {
     this.options = options;
     this.eventHandler = tinybounce(this.onScroll.bind(this), 10, true);
     this.dCalcBounds = tinybounce(this.calcBounds.bind(this), 10);
+    this.paused = false;
 
     this.calcBounds();
 
     on(window, 'scroll', this.eventHandler);
     on(window, 'resize', this.dCalcBounds);
+
+    on(this.el, 'scrolltriggers:pause', () => {
+      this.paused = true;
+    });
+
+    on(this.el, 'scrolltriggers:resume', () => {
+      this.paused = false;
+    });
   }
 
   calcBounds() {
@@ -88,10 +97,15 @@ class ScrollTrigger {
   onScroll() {
     const scroll = ScrollTrigger.getScrollY();
 
+    if (this.paused) {
+      return;
+    }
+
     if (this.options.progress) {
       const perc = scroll / (document.documentElement.scrollHeight - window.innerHeight);
       this.el.style.width = `${perc * 100}%`;
     }
+
     if (scroll < this.start || (this.end && scroll > this.end)) {
       if (this.added) {
         this.outOfView();
