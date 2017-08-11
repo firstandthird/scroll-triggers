@@ -17,6 +17,7 @@ class ScrollTrigger {
 
     on(window, 'scroll', this.eventHandler);
     on(window, 'resize', this.dCalcBounds);
+    on(window, 'load', this.dCalcBounds);
 
     on(this.el, 'scrolltriggers:pause', () => {
       this.paused = true;
