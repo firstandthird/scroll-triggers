@@ -1,6 +1,6 @@
 'use strict';
 
-import { find, findOne, ready, on, addClass, removeClass, styles, addAttrs } from 'domassist';
+import { find, fire, findOne, ready, on, addClass, removeClass, styles } from 'domassist';
 import attrobj from 'attrobj';
 import tinybounce from 'tinybounce';
 
@@ -12,11 +12,12 @@ class ScrollTrigger {
     this.eventHandler = tinybounce(this.onScroll.bind(this), 10, true);
     this.dCalcBounds = tinybounce(this.calcBounds.bind(this), 10);
     this.paused = false;
+    this.disabled = false;
 
     this.calcBounds();
 
-    on(window, 'scroll', this.eventHandler);
-    on(window, 'resize', this.dCalcBounds);
+    window.addEventListener('scroll', this.eventHandler);
+    window.addEventListener('resize', this.dCalcBounds);
 
     on(this.el, 'scrolltriggers:pause', () => {
       this.paused = true;
@@ -28,6 +29,15 @@ class ScrollTrigger {
   }
 
   calcBounds() {
+    // Element is hidden and not fixed
+    if (!this.el.offsetParent && typeof this.options.fixed !== 'undefined') {
+      // Don't even bother calculating
+      this.disabled = true;
+      return;
+    } else {
+      this.disabled = false;
+    }
+
     const position = this.options.position || 'bottom';
 
     this.startEl = (this.options.start) ? findOne(this.options.start) : this.el;
@@ -61,28 +71,28 @@ class ScrollTrigger {
 
   inView() {
     const { className } = this.options;
+
     if (className && this.el.classList) {
       addClass(this.el, className);
     }
+
     const image = this.options.image;
+
     if (image) {
       if (this.el.tagName === 'IMG') {
-        if (this.el.getAttribute('src')) {
-          return;
-        }
-
-        addAttrs(this.el, { src: image });
+        this.el.setAttribute('src', image);
       } else {
-        if (this.el.style.backgroundImage) {
-          return;
-        }
-
         styles(this.el, {
           backgroundImage: `url(${image})`,
           backgroundRepeat: 'no-repeat'
         });
       }
+
+      // Don't listen anymore
+      window.removeEventListener('scroll', this.eventHandler);
+      window.removeEventListener('resize', this.dCalcBounds);
     }
+
     this.added = true;
   }
 
@@ -97,7 +107,7 @@ class ScrollTrigger {
   onScroll() {
     const scroll = ScrollTrigger.getScrollY();
 
-    if (this.paused) {
+    if (this.paused || this.disabled) {
       return;
     }
 
@@ -166,7 +176,12 @@ const init = function(items) {
     const els = find('[data-scroll]');
 
     els.forEach(el => {
+      if (el.hasAttribute('data-scroll-init')) {
+        return;
+      }
+
       const options = attrobj('scroll', el);
+      el.setAttribute('data-scroll-init', 'true');
 
       if (options.progress !== null && typeof options.progress !== 'undefined') {
         options.progress = true;
@@ -188,6 +203,15 @@ const init = function(items) {
 
   return instances;
 };
+
+if (document.readyState !== 'complete') {
+  // Avoid image loading impacting on calculations
+  document.addEventListener('readystatechange', () => {
+    if (document.readyState === 'complete') {
+      fire(window, 'resize');
+    }
+  });
+}
 
 export default init;
 
