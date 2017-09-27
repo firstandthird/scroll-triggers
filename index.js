@@ -34,9 +34,9 @@ class ScrollTrigger {
       // Don't even bother calculating
       this.disabled = true;
       return;
-    } else {
-      this.disabled = false;
     }
+
+    this.disabled = false;
 
     const position = this.options.position || 'bottom';
 
