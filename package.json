@@ -41,13 +41,13 @@
     "url": "https://github.com/firstandthird/scroll-triggers.git"
   },
   "devDependencies": {
-    "eslint-config-firstandthird": "3.2.0",
-    "eslint-plugin-import": "2.2.0",
+    "eslint-config-firstandthird": "4.0.1",
+    "eslint-plugin-import": "2.7.0",
     "phantomjs-prebuilt": "^2.1.14",
     "scriptkit": "0.2.0",
     "tap-spec": "4.1.1",
     "tape-rollup": "4.6.4",
-    "tape-run": "2.4.1"
+    "tape-run": "3.0.0"
   },
   "eslintConfig": {
     "env": {
@@ -56,8 +56,8 @@
     "extends": "firstandthird"
   },
   "dependencies": {
-    "attrobj": "1.2.0",
-    "domassist": "1.9.0",
-    "tinybounce": "0.0.1"
+    "attrobj": "^1.2.0",
+    "domassist": "^1.9.0",
+    "tinybounce": "^0.0.1"
   }
 }
