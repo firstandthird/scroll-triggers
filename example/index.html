@@ -81,7 +81,13 @@
       ScrollTriggers([{
         el: document.querySelectorAll('.scroll-js'),
         className: 'visible',
-        position: 'top'
+        position: 'top',
+        inView: function(el, options) {
+          console.log('in view', el, options);
+        },
+        outOfView: function(el, options) {
+          console.log('out of view', el, options);
+        }
       }]);
     </script>
   </body>

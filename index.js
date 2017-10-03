@@ -70,7 +70,7 @@ class ScrollTrigger {
   }
 
   inView() {
-    const { className } = this.options;
+    const { className, inView } = this.options;
 
     if (className && this.el.classList) {
       addClass(this.el, className);
@@ -93,13 +93,21 @@ class ScrollTrigger {
       window.removeEventListener('resize', this.dCalcBounds);
     }
 
+    if (typeof inView === 'function') {
+      inView(this.el, this.options);
+    }
+
     this.added = true;
   }
 
   outOfView() {
-    const { className } = this.options;
+    const { className, outOfView } = this.options;
     if (className && this.el.classList) {
       removeClass(this.el, className);
+    }
+
+    if (typeof outOfView === 'function') {
+      outOfView(this.el, this.options);
     }
     this.added = false;
   }
