@@ -76,7 +76,9 @@ scrollTriggers({
     className: 'class-to-add',
     image: 'image/path.jpg',
     position: 'top|middle|bottom',
-    progress: true|false
+    progress: true|false,
+    inView: function(el, options) {},
+    outOfView: function(el, options) {}
   }
 });
 ```
