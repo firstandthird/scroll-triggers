@@ -4,7 +4,7 @@
   "homepage": "https://github.com/firstandthird/scroll-triggers",
   "author": "First+Third",
   "license": "MIT",
-  "version": "3.8.0",
+  "version": "3.9.0",
   "main": "dist/scroll-triggers.js",
   "module": "index.js",
   "scripts": {
