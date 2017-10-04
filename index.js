@@ -14,6 +14,16 @@ class ScrollTrigger {
     this.paused = false;
     this.disabled = false;
 
+    //if image, only process once and load a screen size above
+    if (this.options.image) {
+      this.options.offset = Math.max(
+          document.documentElement.clientHeight,
+          window.innerHeight || 0) * -1;
+      this.options.once = true;
+    }
+
+    el.setAttribute('data-scroll-init', 'true');
+
     this.calcBounds();
 
     window.addEventListener('scroll', this.eventHandler);
@@ -87,16 +97,17 @@ class ScrollTrigger {
           backgroundRepeat: 'no-repeat'
         });
       }
-
-      // Don't listen anymore
-      window.removeEventListener('scroll', this.eventHandler);
-      window.removeEventListener('resize', this.dCalcBounds);
     }
 
     if (typeof inView === 'function') {
       inView(this.el, this.options);
     }
 
+    if (typeof this.options.once !== 'undefined') {
+      this.disabled = true;
+      window.removeEventListener('scroll', this.eventHandler);
+      window.removeEventListener('resize', this.dCalcBounds);
+    }
     this.added = true;
   }
 
@@ -189,7 +200,6 @@ const init = function(items) {
       }
 
       const options = attrobj('scroll', el);
-      el.setAttribute('data-scroll-init', 'true');
 
       if (options.progress !== null && typeof options.progress !== 'undefined') {
         options.progress = true;
@@ -198,13 +208,7 @@ const init = function(items) {
 
       if (options.offset) {
         options.offset = parseInt(options.offset, 10);
-      } else if (options.image) {
-        // Loading an image from a full screen below
-        options.offset = Math.max(
-          document.documentElement.clientHeight,
-          window.innerHeight || 0) * -1;
       }
-
       instances.push(new ScrollTrigger(el, options));
     });
   }
