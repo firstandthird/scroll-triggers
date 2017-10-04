@@ -6,6 +6,10 @@ import tinybounce from 'tinybounce';
 
 class ScrollTrigger {
   constructor(el, options) {
+    if (el.hasAttribute('data-scroll-init')) {
+      return;
+    }
+
     this.added = false;
     this.el = el;
     this.options = options;
@@ -195,10 +199,6 @@ const init = function(items) {
     const els = find('[data-scroll]');
 
     els.forEach(el => {
-      if (el.hasAttribute('data-scroll-init')) {
-        return;
-      }
-
       const options = attrobj('scroll', el);
 
       if (options.progress !== null && typeof options.progress !== 'undefined') {
