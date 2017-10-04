@@ -107,7 +107,7 @@ class ScrollTrigger {
       inView(this.el, this.options);
     }
 
-    if (typeof this.options.once !== 'undefined') {
+    if (this.options.once) {
       this.disabled = true;
       window.removeEventListener('scroll', this.eventHandler);
       window.removeEventListener('resize', this.dCalcBounds);
@@ -208,6 +208,9 @@ const init = function(items) {
 
       if (options.offset) {
         options.offset = parseInt(options.offset, 10);
+      }
+      if (typeof options.once !== 'undefined') {
+        options.once = true;
       }
       instances.push(new ScrollTrigger(el, options));
     });
