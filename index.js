@@ -50,7 +50,8 @@ class ScrollTrigger {
 
   calcBounds() {
     // Element is hidden and not fixed
-    if (!this.el.offsetParent && typeof this.options.fixed === 'undefined') {
+    const isAllowedToBeFixed = this.options.progress === true || typeof this.options.fixed !== 'undefined';
+    if (!this.el.offsetParent && !isAllowedToBeFixed) {
       // Don't even bother calculating
       this.disabled = true;
       return;
