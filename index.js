@@ -40,11 +40,18 @@ class ScrollTrigger {
     on(this.el, 'scrolltriggers:resume', () => {
       this.paused = false;
     });
+
+    /*
+      Prevents a bug on Blink+Webkit in which scroll is always 0 until around
+      400 milliseconds due to anchor scrolling features.
+     */
+    setTimeout(this.eventHandler, 400);
   }
 
   calcBounds() {
     // Element is hidden and not fixed
-    if (!this.el.offsetParent && typeof this.options.fixed !== 'undefined') {
+    const isAllowedToBeFixed = this.options.progress === true || typeof this.options.fixed !== 'undefined';
+    if (!this.el.offsetParent && !isAllowedToBeFixed) {
       // Don't even bother calculating
       this.disabled = true;
       return;
