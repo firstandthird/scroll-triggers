@@ -19,7 +19,7 @@ class ScrollTrigger {
     this.disabled = false;
 
     //if image, only process once and load a screen size above
-    if (this.options.image) {
+    if (this.options.image || this.options.srcset) {
       this.options.offset = Math.max(
           document.documentElement.clientHeight,
           window.innerHeight || 0) * -1;
@@ -98,6 +98,7 @@ class ScrollTrigger {
     }
 
     const image = this.options.image;
+    const srcset = this.options.srcset;
 
     if (image) {
       if (this.el.tagName === 'IMG') {
@@ -108,6 +109,10 @@ class ScrollTrigger {
           backgroundRepeat: 'no-repeat'
         });
       }
+    }
+
+    if (srcset) {
+      this.el.setAttribute('srcset', srcset);
     }
 
     if (typeof inView === 'function') {
