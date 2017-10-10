@@ -4,6 +4,13 @@ import { find, fire, findOne, ready, on, addClass, removeClass, styles } from 'd
 import attrobj from 'attrobj';
 import tinybounce from 'tinybounce';
 
+const Events = {
+  In: 'scrolltriggers:inView',
+  Out: 'scrolltriggers:outOfView',
+  Pause: 'scrolltriggers:pause',
+  Resume: 'scrolltriggers:resume',
+};
+
 class ScrollTrigger {
   constructor(el, options) {
     if (el.hasAttribute('data-scroll-init')) {
@@ -33,11 +40,11 @@ class ScrollTrigger {
     window.addEventListener('scroll', this.eventHandler);
     window.addEventListener('resize', this.dCalcBounds);
 
-    on(this.el, 'scrolltriggers:pause', () => {
+    on(this.el, Events.Pause, () => {
       this.paused = true;
     });
 
-    on(this.el, 'scrolltriggers:resume', () => {
+    on(this.el, Events.Resume, () => {
       this.paused = false;
     });
 
@@ -119,11 +126,14 @@ class ScrollTrigger {
       inView(this.el, this.options);
     }
 
+    fire(this.el, Events.In, { bubbles: true, detail: this.options });
+
     if (this.options.once) {
       this.disabled = true;
       window.removeEventListener('scroll', this.eventHandler);
       window.removeEventListener('resize', this.dCalcBounds);
     }
+
     this.added = true;
   }
 
@@ -136,6 +146,9 @@ class ScrollTrigger {
     if (typeof outOfView === 'function') {
       outOfView(this.el, this.options);
     }
+
+    fire(this.el, Events.Out, { bubbles: true, detail: this.options });
+
     this.added = false;
   }
 
@@ -240,6 +253,7 @@ if (document.readyState !== 'complete') {
   });
 }
 
-export default init;
-
 ready(init);
+
+export default init;
+export { Events as ScrollTriggersEvents };

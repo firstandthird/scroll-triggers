@@ -85,7 +85,7 @@
     <footer data-scroll data-scroll-class="floating" data-scroll-start="#div2" data-scroll-position="top">Footer</footer>
     <script src="../dist/scroll-triggers.js"></script>
     <script>
-      ScrollTriggers([{
+      ScrollTriggers.default([{
         el: document.querySelectorAll('.scroll-js'),
         className: 'visible',
         position: 'top',
@@ -96,6 +96,9 @@
           console.log('out of view', el, options);
         }
       }]);
+
+      window.addEventListener(ScrollTriggers.ScrollTriggersEvents.In, console.log);
+      window.addEventListener(ScrollTriggers.ScrollTriggersEvents.Out, console.log);
     </script>
   </body>
 </html>
