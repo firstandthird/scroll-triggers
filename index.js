@@ -255,5 +255,6 @@ if (document.readyState !== 'complete') {
 
 ready(init);
 
+init.Events = Events;
+
 export default init;
-export { Events as ScrollTriggersEvents };
