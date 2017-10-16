@@ -96,6 +96,9 @@
           console.log('out of view', el, options);
         }
       }]);
+
+      window.addEventListener(ScrollTriggers.Events.In, console.log);
+      window.addEventListener(ScrollTriggers.Events.Out, console.log);
     </script>
   </body>
 </html>
