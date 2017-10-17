@@ -256,5 +256,6 @@ if (document.readyState !== 'complete') {
 ready(init);
 
 init.Events = Events;
+init.ScrollTrigger = ScrollTrigger;
 
 export default init;
