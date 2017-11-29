@@ -28,8 +28,8 @@ class ScrollTrigger {
     //if image, only process once and load a screen size above
     if (this.options.image || this.options.srcset) {
       this.options.offset = Math.max(
-          document.documentElement.clientHeight,
-          window.innerHeight || 0) * -1;
+          (document.documentElement.clientHeight,
+          window.innerHeight || 0) / 2) * -1;
       this.options.once = true;
     }
 
