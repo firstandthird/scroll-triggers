@@ -25,11 +25,15 @@ class ScrollTrigger {
     this.paused = false;
     this.disabled = false;
 
-    //if image, only process once and load a screen size above
-    if (this.options.image || this.options.srcset) {
+    // Half a screen above loading
+    if (this.options.image || this.options.srcset || this.options.offset === 'auto') {
       this.options.offset = Math.max(
-          (document.documentElement.clientHeight,
-          window.innerHeight || 0) / 2) * -1;
+        (document.documentElement.clientHeight,
+        window.innerHeight || 0) / 2) * -1;
+    }
+
+    // If images, once by default
+    if (this.options.image || this.options.srcset) {
       this.options.once = true;
     }
 
