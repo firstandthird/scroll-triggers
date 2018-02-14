@@ -109,11 +109,14 @@ class ScrollTrigger {
     }
 
     const image = this.options.image;
+    const iframe = this.options.iframe;
     const srcset = this.options.srcset;
 
-    if (image) {
+    if (image || iframe) {
       if (this.el.tagName === 'IMG') {
         this.el.setAttribute('src', image);
+      } else if (this.el.tagName === 'IFRAME') {
+        this.el.setAttribute('src', iframe);
       } else {
         styles(this.el, {
           backgroundImage: `url(${image})`,
