@@ -33,7 +33,7 @@ class ScrollTrigger {
     }
 
     // If images, once by default
-    if (this.options.image || this.options.srcset) {
+    if (this.options.image || this.options.src || this.options.srcset) {
       this.options.once = true;
     }
 
