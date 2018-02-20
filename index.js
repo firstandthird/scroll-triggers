@@ -33,7 +33,7 @@ class ScrollTrigger {
     }
 
     // If images, once by default
-    if (this.options.image || this.options.srcset) {
+    if (this.options.image || this.options.src || this.options.srcset) {
       this.options.once = true;
     }
 
@@ -109,11 +109,14 @@ class ScrollTrigger {
     }
 
     const image = this.options.image;
+    const src = this.options.src;
     const srcset = this.options.srcset;
 
-    if (image) {
+    if (image || src) {
       if (this.el.tagName === 'IMG') {
         this.el.setAttribute('src', image);
+      } else if (this.el.tagName === 'IFRAME' || this.el.tagName === 'VIDEO') {
+        this.el.setAttribute('src', src);
       } else {
         styles(this.el, {
           backgroundImage: `url(${image})`,
