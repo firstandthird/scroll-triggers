@@ -115,7 +115,7 @@ class ScrollTrigger {
     if (image || src) {
       if (this.el.tagName === 'IMG') {
         this.el.setAttribute('src', image);
-      } else if (this.el.tagName === 'IFRAME') {
+      } else if (this.el.tagName === 'IFRAME' || this.el.tagName === 'VIDEO') {
         this.el.setAttribute('src', src);
       } else {
         styles(this.el, {
