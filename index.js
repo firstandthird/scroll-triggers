@@ -60,6 +60,8 @@ class ScrollTrigger {
   }
 
   calcBounds() {
+    this.options.offset = parseInt(this.el.dataset.scrollOffset || 0, 10);
+
     // Element is hidden and not fixed
     const isAllowedToBeFixed = this.options.progress === true || typeof this.options.fixed !== 'undefined';
     if ((!this.el.offsetParent && !isAllowedToBeFixed) ||
