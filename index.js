@@ -60,7 +60,15 @@ class ScrollTrigger {
   }
 
   calcBounds() {
-    this.options.offset = parseInt(this.el.dataset.scrollOffset || 0, 10);
+    this.options.offset = this.el.dataset.scrollOffset;
+
+    if (this.options.image || this.options.srcset || this.options.offset === 'auto') {
+      this.options.offset = Math.max(
+        (document.documentElement.clientHeight,
+          window.innerHeight || 0) / 2) * -1;
+    } else {
+      this.options.offset = parseInt(this.options.offset || 0, 10);
+    }
 
     // Element is hidden and not fixed
     const isAllowedToBeFixed = this.options.progress === true || typeof this.options.fixed !== 'undefined';
