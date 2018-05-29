@@ -25,12 +25,7 @@ class ScrollTrigger {
     this.paused = false;
     this.disabled = false;
 
-    // Half a screen above loading
-    if (this.options.image || this.options.srcset || this.options.offset === 'auto') {
-      this.options.offset = Math.max(
-        (document.documentElement.clientHeight,
-        window.innerHeight || 0) / 2) * -1;
-    }
+    this.calcOffset();
 
     // If images, once by default
     if (this.options.image || this.options.src || this.options.srcset) {
@@ -60,15 +55,7 @@ class ScrollTrigger {
   }
 
   calcBounds() {
-    this.options.offset = this.el.dataset.scrollOffset;
-
-    if (this.options.image || this.options.srcset || this.options.offset === 'auto') {
-      this.options.offset = Math.max(
-        (document.documentElement.clientHeight,
-          window.innerHeight || 0) / 2) * -1;
-    } else {
-      this.options.offset = parseInt(this.options.offset || 0, 10);
-    }
+    this.calcOffset();
 
     // Element is hidden and not fixed
     const isAllowedToBeFixed = this.options.progress === true || typeof this.options.fixed !== 'undefined';
@@ -110,6 +97,19 @@ class ScrollTrigger {
     }
 
     this.eventHandler();
+  }
+
+  calcOffset() {
+    this.options.offset = this.el.dataset.scrollOffset;
+
+    // Half a screen above loading
+    if (this.options.image || this.options.srcset || this.options.offset === 'auto') {
+      this.options.offset = Math.max(
+        (document.documentElement.clientHeight,
+          window.innerHeight || 0) / 2) * -1;
+    } else {
+      this.options.offset = parseInt(this.options.offset || 0, 10);
+    }
   }
 
   inView() {
