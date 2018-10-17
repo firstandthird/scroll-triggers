@@ -11,13 +11,16 @@ A tiny, dependency-less javascript library to add classes as elements scroll int
 
 ## Install
 
-`npm install scroll-triggers`
+```sh
+npm install scroll-triggers
+```
 
 ## Setup
 
 ```javascript
 import 'scroll-triggers';
-// or
+
+// alternative
 import scrollTriggers from 'scroll-triggers';
 ```
 
@@ -25,41 +28,41 @@ import scrollTriggers from 'scroll-triggers';
 
 Custom events are fired/listened on the element:
 
-| Event                      | Type   | Description             |
-|----------------------------|--------|-------------------------|
-| `scrolltriggers:inView`    | Fired  | Element is in view      |
-| `scrolltriggers:outOfView` | Fired  | Element is out of view  |
-| `scrolltriggers:pause`     | Listen | Pauses scroll-triggers  |
-| `scrolltriggers:resume`    | Listen | Resumes scroll-triggers |
+| Event                      | Type     | Description             |
+|----------------------------|----------|-------------------------|
+| `scrolltriggers:inView`    | Fired    | Element is in view      |
+| `scrolltriggers:outOfView` | Fired    | Element is out of view  |
+| `scrolltriggers:pause`     | Listened | Pauses scroll-triggers  |
+| `scrolltriggers:resume`    | Listened | Resumes scroll-triggers |
 
 ## Options
 
-| Event                      | Type   | Description             |
-|----------------------------|--------|-------------------------|
-| `className`    | {string}  | Class to be added/removed when element is in view |
-| `start`    | {string\|Element\|NodeList} CSS Selector  | Add class when the specified element is in view |
-| `end` | {string\|Element\|NodeList} CSS Selector | Removes class when the specified element is in view  |
-| `position` | {string = 'bottom'} "top\|middle\|bottom" | Add class at when element hits the specified position of page |
-| `positionEnd` | {string = 'bottom'} "auto\|top\|middle\|bottom" | Removes class when specified element hits the specified position of page |
-| `image` | {string} Path to image | Set an image when an element comes into view |
-| `src` | {string} Path to resource | Set the `src` property when an element comes into view |
-| `srcset` | {string} Path to resource | Set the `srcset` property when an element comes into view |
-| `progress` | {boolean = false} | Set the width of an element based on scroll % |
-| `once` | {boolean = true} | Whether scroll-triggers should be executed once or not |
-| `inView` | {function} | Callback executed when element is in view |
-| `outOfView` | {function} | Callback executed when element is out view |
+| Event         | Type                                              | Description                                                              |
+|---------------|---------------------------------------------------|--------------------------------------------------------------------------|
+| `className`   | _{string}_                                        | Class to be added/removed when element is in view                        |
+| `start`       | _{string\|Element\|NodeList}_ CSS Selector        | Add class when the specified element is in view                          |
+| `end`         | _{string\|Element\|NodeList}_ CSS Selector        | Removes class when the specified element is in view                      |
+| `position`    | _{string = 'bottom'}_ "top\|middle\|bottom"       | Add class at when element hits the specified position of page            |
+| `positionEnd` | _{string = 'bottom'}_ "auto\|top\|middle\|bottom" | Removes class when specified element hits the specified position of page |
+| `image`       | _{string}_ Path to image                          | Set an image when an element comes into view                             |
+| `src`         | _{string}_ Path to resource                       | Set the `src` property when an element comes into view                   |
+| `srcset`      | _{string}_ Path to resource                       | Set the `srcset` property when an element comes into view                |
+| `progress`    | _{boolean = false}_                               | Set the width of an element based on scroll %                            |
+| `once`        | _{boolean = true}_                                | Whether scroll-triggers should be executed once or not                   |
+| `inView`      | _{function}_                                      | Callback executed when element is in view                                |
+| `outOfView`   | _{function}_                                      | Callback executed when element is out view                               |
 
 ## Usage
 
 ### HTML
 
-Add class when element is in view.
+Add class when element is in view. See [the example](example/index.html).
 
 ```html
 <div data-scroll data-scroll-class="class-to-add"></div>
 ```
 
-Add class when another element is in view.
+Add class when another element is in view
 
 ```html
 <div data-scroll data-scroll-class="class-to-add" data-scroll-start=".some .selector"></div>
