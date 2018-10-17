@@ -39,7 +39,7 @@ Custom events are fired/listened on the element:
 
 List of available options:
 
-| Event         | Type                                              | Description                                                              |
+| Name          | Type                                              | Description                                                              |
 |---------------|---------------------------------------------------|--------------------------------------------------------------------------|
 | `className`   | _{string}_                                        | Class to be added/removed when element is in view                        |
 | `start`       | _{string\|Element\|NodeList}_ CSS Selector        | Add class when the specified element is in view                          |
@@ -58,9 +58,11 @@ List of available options:
 
 ## Usage
 
+See [the example](example/index.html).
+
 ### HTML
 
-Add class when element is in view. See [the example](example/index.html).
+Add class when element is in view.
 
 ```html
 <div data-scroll data-scroll-class="class-to-add"></div>
@@ -122,7 +124,7 @@ Set the `srcset` property when an element comes into view (great for lazy load)
 </picture>
 ```
 
-### Javascript
+### JavaScript
 
 ```javascript
 import scrollTriggers from 'scroll-triggers';
