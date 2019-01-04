@@ -9,6 +9,7 @@ const Events = {
   Out: 'scrolltriggers:outOfView',
   Pause: 'scrolltriggers:pause',
   Resume: 'scrolltriggers:resume',
+  Bounds: 'scrolltriggers:bounds'
 };
 
 class ScrollTrigger {
@@ -96,11 +97,13 @@ class ScrollTrigger {
       ScrollTrigger.checkElement(endEl, 'end', this.options.end);
     }
 
+    this.fire(Events.Bounds);
     this.eventHandler();
   }
 
   calcOffset() {
-    this.options.offset = this.el.dataset.scrollOffset;
+    this.options.offset = this.options.offset ?
+      this.options.offset : this.el.dataset.scrollOffset;
 
     // Half a screen above loading
     if (this.options.image || this.options.srcset || this.options.offset === 'auto') {
@@ -144,7 +147,7 @@ class ScrollTrigger {
       inView(this.el, this.options);
     }
 
-    fire(this.el, Events.In, { bubbles: true, detail: this.options });
+    this.fire(Events.In);
 
     if (this.options.once) {
       this.disabled = true;
@@ -165,9 +168,18 @@ class ScrollTrigger {
       outOfView(this.el, this.options);
     }
 
-    fire(this.el, Events.Out, { bubbles: true, detail: this.options });
+    this.fire(Events.Out);
 
     this.added = false;
+  }
+
+  fire(event) {
+    fire(this.el, event, {
+      detail: {
+        instance: this,
+        options: this.options
+      }
+    });
   }
 
   onScroll() {

@@ -11,11 +11,14 @@
     "start": "scriptkit",
     "build": "scriptkit build",
     "dev": "scriptkit dev",
-    "prepublish": "scriptkit"
+    "prepublishOnly": "scriptkit"
   },
   "scriptkit": {
     "files": {
       "dist/scroll-triggers.js": "index.js"
+    },
+    "test": {
+      "enabled": false
     },
     "scripts": {
       "commonjs": {
@@ -41,13 +44,13 @@
     "url": "https://github.com/firstandthird/scroll-triggers.git"
   },
   "devDependencies": {
-    "eslint-config-firstandthird": "4.0.1",
-    "eslint-plugin-import": "2.7.0",
+    "eslint-config-firstandthird": "^4.3.0",
+    "eslint-plugin-import": "^2.14.0",
     "phantomjs-prebuilt": "^2.1.14",
-    "scriptkit": "0.2.0",
-    "tap-spec": "4.1.1",
-    "tape-rollup": "4.6.4",
-    "tape-run": "3.0.0"
+    "scriptkit": "^1.0.0",
+    "tap-spec": "^5.0.0",
+    "tape-rollup": "^4.6.4",
+    "tape-run": "^5.0.0"
   },
   "eslintConfig": {
     "env": {
@@ -57,7 +60,7 @@
   },
   "dependencies": {
     "attrobj": "^1.2.0",
-    "domassist": "^1.9.0",
+    "domassist": "^1.13.0",
     "tinybounce": "^0.0.1"
   }
 }
