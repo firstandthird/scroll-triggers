@@ -129,7 +129,6 @@ Set the `srcset` property when an element comes into view (great for lazy load)
 ```javascript
 import scrollTriggers from 'scroll-triggers';
 
-// It also accepts an array
 scrollTriggers([
   {
     el: '.some-selector',
