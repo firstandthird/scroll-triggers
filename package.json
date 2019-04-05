@@ -5,8 +5,8 @@
   "author": "First+Third",
   "license": "MIT",
   "version": "3.17.0",
-  "main": "dist/scroll-triggers.js",
-  "module": "index.js",
+  "main": "index.js",
+  "module": "dist/scroll-triggers.esm.js",
   "scripts": {
     "start": "scriptkit",
     "build": "scriptkit build",
@@ -19,20 +19,7 @@
     },
     "test": {
       "enabled": false
-    },
-    "scripts": {
-      "commonjs": {
-        "ignore": [
-          "node_modules/tape-rollup/*"
-        ]
-      }
     }
-  },
-  "watch": {
-    "index.js": [
-      "lint",
-      "build"
-    ]
   },
   "keywords": [
     "browser",
@@ -43,24 +30,20 @@
     "type": "git",
     "url": "https://github.com/firstandthird/scroll-triggers.git"
   },
+  "dependencies": {
+    "attrobj": "^3.0.0",
+    "domassist": "^2.0.2",
+    "tinybounce": "^1.0.1"
+  },
   "devDependencies": {
     "eslint-config-firstandthird": "^4.3.0",
-    "eslint-plugin-import": "^2.14.0",
-    "phantomjs-prebuilt": "^2.1.14",
-    "scriptkit": "^1.0.0",
-    "tap-spec": "^5.0.0",
-    "tape-rollup": "^4.6.4",
-    "tape-run": "^5.0.0"
+    "eslint-plugin-import": "^2.16.0",
+    "scriptkit": "^2.0.2"
   },
   "eslintConfig": {
     "env": {
       "browser": true
     },
     "extends": "firstandthird"
-  },
-  "dependencies": {
-    "attrobj": "^1.2.0",
-    "domassist": "^1.13.0",
-    "tinybounce": "^0.0.1"
   }
 }

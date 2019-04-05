@@ -1,4 +1,7 @@
 node_modules
+npm-debug.log
+.idea
+test/*.dist.*
 dist
-.idea/
+*.map
 .DS_Store
