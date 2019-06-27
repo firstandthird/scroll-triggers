@@ -6,7 +6,7 @@
   "license": "MIT",
   "version": "4.0.0",
   "main": "index.js",
-  "module": "dist/scroll-triggers.esm.js",
+  "module": "dist/scroll-triggers.js",
   "scripts": {
     "start": "scriptkit",
     "build": "scriptkit build",
@@ -31,14 +31,14 @@
     "url": "https://github.com/firstandthird/scroll-triggers.git"
   },
   "dependencies": {
-    "attrobj": "^3.0.0",
-    "domassist": "^2.0.2",
-    "tinybounce": "^1.0.1"
+    "attrobj": "^3.1.0",
+    "domassist": "^2.2.0",
+    "tinybounce": "^1.2.0"
   },
   "devDependencies": {
-    "eslint-config-firstandthird": "^4.3.0",
-    "eslint-plugin-import": "^2.16.0",
-    "scriptkit": "^2.0.2"
+    "eslint-config-firstandthird": "^4.4.0",
+    "eslint-plugin-import": "^2.18.0",
+    "scriptkit": "^3.0.0"
   },
   "eslintConfig": {
     "env": {
