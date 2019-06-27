@@ -1,6 +1,4 @@
-# scroll-triggers
-
-[![Build Status](https://travis-ci.org/firstandthird/ga-nav-tracker.svg?branch=master)](https://travis-ci.org/firstandthird/ga-nav-tracker)
+# scroll-triggers ![npm](https://img.shields.io/npm/v/scroll-triggers.svg)
 
 A tiny, dependency-less javascript library to add classes as elements scroll into viewport.
 
