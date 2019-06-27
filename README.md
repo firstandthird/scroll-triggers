@@ -1,4 +1,4 @@
-# scroll-triggers
+# scroll-triggers ![npm](https://img.shields.io/npm/v/scroll-triggers.svg)
 
 A tiny, dependency-less javascript library to add classes as elements scroll into viewport.
 
