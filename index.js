@@ -69,6 +69,11 @@ class ScrollTrigger {
 
     this.disabled = false;
 
+    if (isAllowedToBeFixed && this.added) {
+      this.outOfView();
+      return requestAnimationFrame(() => this.calcBounds());
+    }
+
     const position = this.options.position || 'bottom';
 
     this.startEl = (this.options.start) ? findOne(this.options.start) : this.el;
