@@ -132,15 +132,20 @@ class ScrollTrigger {
     const srcset = this.options.srcset;
 
     if (image || src) {
-      if (this.el.tagName === 'IMG') {
-        this.el.setAttribute('src', image);
-      } else if (this.el.tagName === 'IFRAME' || this.el.tagName === 'VIDEO') {
-        this.el.setAttribute('src', src);
-      } else {
-        styles(this.el, {
-          backgroundImage: `url(${image})`,
-          backgroundRepeat: 'no-repeat'
-        });
+      const source = image || src;
+
+      switch (this.el.tagName) {
+        case 'IMG':
+        case 'IFRAME':
+        case 'VIDEO':
+        case 'SCRIPT':
+          this.el.setAttribute('src', source);
+          break;
+        default:
+          styles(this.el, {
+            backgroundImage: `url(${source})`,
+            backgroundRepeat: 'no-repeat'
+          });
       }
     }
 
